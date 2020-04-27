@@ -1,0 +1,40 @@
+{
+  "name": "alxt/pull",
+  "authors": [
+    {
+      "name": "Alexander Timmermann",
+      "email": "alex@alxt.dev"
+    }
+  ],
+  "require": {
+    "php": "^7.4",
+    "ext-posix": "*",
+    "php-di/php-di": "^6.1",
+    "nette/neon": "^3.1",
+    "symfony/process": "^5.0",
+    "vanilla/garden-cli": "^2.2",
+    "webmozart/assert": "^1.8",
+    "myclabs/php-enum": "^1.7",
+    "symfony/finder": "^5.0",
+    "symfony/console": "^5.0"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-master",
+    "phpunit/phpunit": "^9.1",
+    "psy/psysh": "^0.10.3",
+    "phpstan/phpstan": "^0.12.19",
+    "timeweb/phpstan-enum": "^2.2",
+    "phpstan/phpstan-webmozart-assert": "^0.12.3",
+    "phpstan/extension-installer": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pull\\": "src",
+      "Pull\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "phpunit": "vendor/bin/phpunit tests/",
+    "phpstan": "vendor/bin/phpstan analyse"
+  }
+}

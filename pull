@@ -1,0 +1,19 @@
+#!/usr/bin/env php
+<?php declare(strict_types=1);
+
+require_once __DIR__.'/vendor/autoload.php';
+
+use DI\ContainerBuilder;
+use Pull\PullCommand;
+use Symfony\Component\Console\Application;
+
+$diConfig = require __DIR__.'/config/container.php';
+$container = (new ContainerBuilder())->addDefinitions($diConfig)->build();
+
+$command = $container->get(PullCommand::class);
+
+$app = new Application('pull', 'v1');
+$app->add($command);
+$app->setDefaultCommand($command->getName(), true);
+
+$app->run();
