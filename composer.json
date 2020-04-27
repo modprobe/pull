@@ -6,6 +6,7 @@
       "email": "alex@alxt.dev"
     }
   ],
+  "license": "MIT",
   "require": {
     "php": "^7.4",
     "ext-posix": "*",
