@@ -68,7 +68,7 @@ class PullCommand extends Command
 
         /** @var string $configPath */
         $configPath = $input->getOption('config');
-        $config     = $this->configLoader->load($configPath);
+        $config     = $this->configLoader->loadFile($configPath);
 
         if ($input->getArgument('path') === null && $config->projectDir() === null) {
             $this->io($output)->error('Path is neither set in a config file nor provided as an argument.');
