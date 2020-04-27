@@ -1,0 +1,47 @@
+name: Test project
+on: [push, pull_request]
+
+jobs:
+  phpstan:
+    name: PHPStan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Cache PHP dependencies
+        uses: actions/cache@v1
+        with:
+          path: vendor
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/composer.lock') }}
+
+      - name: composer
+        uses: php-actions/composer@v1
+        with:
+          command: install
+
+      - name: PHPStan
+        uses: docker://oskarstark/phpstan-ga
+        env:
+          REQUIRE_DEV: true
+        with:
+          args: analyse
+
+  phpunit:
+    name: PHPUnit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Cache PHP dependencies
+        uses: actions/cache@v1
+        with:
+          path: vendor
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/composer.lock') }}
+
+      - name: composer
+        uses: php-actions/composer@v1
+        with:
+          command: install
+
+      - name: PHPUnit
+        run: vendor/bin/phpunit
